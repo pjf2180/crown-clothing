@@ -11,7 +11,11 @@ const firebaseConfig = {
     messagingSenderId: "218145457317",
     appId: "1:218145457317:web:f4ef64f9e6b87d907df94c"
 };
-
+/**
+ * @param  {} userAuth
+ * @param  {} additionalData - Any additional data beside displayName, email and createdAt
+ * @description Will store the logged in user data into firestore if it doesn't already exist
+ */
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
     const userDocRef = firestore.collection('users')
