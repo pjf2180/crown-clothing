@@ -1,6 +1,7 @@
-export const SET_USER_ACTION = '[App js] Set User';
+import { UserActionTypes } from './user.types'
+
 export const setCurrentUserAction = user => ({
-    type: SET_USER_ACTION,
+    type: UserActionTypes.SET_USER_ACTION,
     payload: user
 })
 export default setCurrentUserAction;
