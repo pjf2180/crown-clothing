@@ -14,3 +14,12 @@ export const selectCollection = collectionId =>
     createSelector(
         selectShopCollections,
         collections => (collections ? collections[collectionId] : null));
+
+export const selectIsFetching = createSelector(
+    shopSelector,
+    shop => shop.isFetching
+);
+export const isCollectionsLoaded = createSelector(
+    shopSelector,
+    shop => !!shop.collections
+);
