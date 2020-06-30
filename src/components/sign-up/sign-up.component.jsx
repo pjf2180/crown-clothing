@@ -2,7 +2,8 @@ import React from 'react'
 import './sign-up.styles.scss';
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { signUp } from '../../redux/user/user.actions';
+import { connect } from 'react-redux';
 
 class SignUp extends React.Component {
     constructor() {
@@ -18,25 +19,27 @@ class SignUp extends React.Component {
         const { name, value } = event.target;
         this.setState({ [name]: value })
     }
-    handleSubmit = async  event => {
+    handleSubmit = async event => {
         event.preventDefault();
+        const { signUp } = this.props;
         const { displayName, email, password, confirmPassword } = this.state;
         if (password !== confirmPassword) {
             alert('Passwords don\'t match');
             return;
         }
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfileDocument(user, {displayName});
-            this.setState({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            })
-        } catch (e) {
-            console.error(e);
-        }
+        signUp({ displayName, email, password });
+        // try {
+        //     const { user } = await auth.createUserWithEmailAndPassword(email, password);
+        //     await createUserProfileDocument(user, {displayName});
+        //     this.setState({
+        //         displayName: '',
+        //         email: '',
+        //         password: '',
+        //         confirmPassword: ''
+        //     })
+        // } catch (e) {
+        //     console.error(e);
+        // }
     }
     render() {
         const { displayName, email, password, confirmPassword } = this.state;
@@ -71,4 +74,8 @@ class SignUp extends React.Component {
         )
     }
 }
-export default SignUp;
+
+const mapDispatchToProps = dispatch => ({
+    signUp: signUpData => dispatch(signUp(signUpData))
+});
+export default connect(null, mapDispatchToProps)(SignUp);
