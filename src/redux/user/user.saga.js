@@ -45,7 +45,7 @@ function* isUserAuthenticated() {
     try {
         const currentUser = yield getCurrentUser();
         if (!currentUser) return
-        getSnapshotFromUserAuth(currentUser);
+        yield getSnapshotFromUserAuth(currentUser);
     } catch (error) {
         yield put(signInFailure(error));
     }
@@ -84,7 +84,7 @@ export function* signInWithEmailStart() {
 }
 export function* checkAuth() {
     yield takeLatest(
-        UserActionTypes.CHECK_AUTH,
+        UserActionTypes.CHECK_USER_SESSION,
         isUserAuthenticated
     )
 }
