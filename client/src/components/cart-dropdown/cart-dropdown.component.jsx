@@ -9,7 +9,6 @@ import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom'
 
 const CartDropdown = ({ cartItems, history, dispatch }) => {
-    console.log(cartItems)
     return (
         <div className="cart-dropdown">
             <div className="cart-items">
