@@ -37,11 +37,11 @@ const SignInComponent = ({googleSignIn,emailSignIn}) => {
                 value={password}
                 label="password"
                 handleChange={handleInputChange} required />
-            <div className="buttons">
 
-                <CustomButton type="submit">Submit</CustomButton>
+            <div className="buttons">
                 <CustomButton type="button" onClick={googleSignIn} isGoogleSignIn>
                     Sign in with Google</CustomButton>
+                <CustomButton type="submit">Submit</CustomButton>
             </div>
         </form>
     </div>

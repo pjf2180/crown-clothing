@@ -4,8 +4,6 @@ import PreviewCollection from '../preview-collection/preview-collection.componen
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
-
-import './collection-overview.styles.scss'
 import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors'
 
 const CollectionOverview = ({ collections }) => (

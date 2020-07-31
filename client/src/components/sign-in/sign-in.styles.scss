@@ -1,5 +1,5 @@
 .sign-in{
-    width: 380px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     .title{
@@ -9,4 +9,9 @@
 .buttons{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    & button:first-child{
+        margin-bottom: 10px;
+    }
 }

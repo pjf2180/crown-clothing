@@ -1,6 +1,6 @@
 import React from 'react'
-import './cart-dropdown.styles.scss'
 import CustomButton from '../custom-button/custom-button.component'
+import CartDropdownContainer from './cart-dropdown.styles'
 import { connect } from 'react-redux'
 import CartItem from '../cart-item/cart-item.component';
 import { selectCartitems } from '../../redux/cart/cart.selectors'
@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom'
 
 const CartDropdown = ({ cartItems, history, dispatch }) => {
     return (
-        <div className="cart-dropdown">
+        <CartDropdownContainer>
             <div className="cart-items">
                 {
                     cartItems.map(cartItem => (<CartItem key={cartItem.id} item={cartItem}></CartItem>))
@@ -23,7 +23,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
                 history.push('/checkout');
                 dispatch(ToggleCartHiddenAction())
             }}>Checkout</CustomButton>
-        </div>
+        </CartDropdownContainer>
     )
 };
 

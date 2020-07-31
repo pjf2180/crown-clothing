@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
-export const smWidth = '575px';
+export const smWidth = '900px';
 
 const GlobalStyle = createGlobalStyle`
     body{
         font-family: 'Open Sans Condensed', sans-serif;
         padding: 2rem;
-        max-width: 768px;
+        max-width: ${smWidth};
         margin: auto;
         @media screen and (max-width: ${smWidth}){
             padding: 10px;
@@ -21,8 +21,6 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    
-    
 `;
 
 export default GlobalStyle;

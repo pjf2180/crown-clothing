@@ -1,6 +1,19 @@
 .sign-in-sign-up{
     display: flex;
-    width: 850px;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
     margin: 30px auto;
+    @media(min-width: 768px){
+        justify-content: space-between;
+    }
+
+}
+.column{
+    padding: 1rem;
+    max-width: 500px;
+    min-width: 300px;
+    @media(max-width: 768px){
+        width: 100%;
+    }
 }
