@@ -1,10 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import StripeButton from './StripeButton';
+import { shallow } from 'enzyme'
+import StripeButton from './stripe-button.component';
 
 describe('<StripeButton />', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<StripeButton />, div);
-  });
-});
+
+    it('renders without crashing', () => {
+        const stripeBtn = shallow(<StripeButton />);
+        expect(stripeBtn).toBeTruthy();
+    });
+
+}); 

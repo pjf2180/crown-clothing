@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "firebase": "^7.15.0",
+    "fsevents": "^2.1.2",
     "node-sass": "^4.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -46,6 +47,9 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "redux-mock-store": "^1.5.4",
     "schematics-react": "^1.0.1"
   }
 }

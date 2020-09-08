@@ -9,15 +9,15 @@ import LoadingSpinner from '../../components/loading-spinner/loading-spinner'
 const CollectionOverviewContainer = lazy(() => import('../../components/collection-overview/collection-overview.container'));
 const CollectionPageContainer = lazy(() => import('../collection/collection.container'));
 
-const ShopPage = ({ fetchCollectionsStart, match }) => {
+export const ShopPage = ({ fetchCollections, match }) => {
 
     useEffect(() => {
-        fetchCollectionsStart();
-    }, [fetchCollectionsStart]);
+        fetchCollections();
+    }, [fetchCollections]);
 
     return (
         <div className="shop-page">
-            <Suspense fallback={<LoadingSpinner/>}>
+            <Suspense fallback={<LoadingSpinner />}>
                 <Route exact path={`${match.path}`} component={CollectionOverviewContainer}></Route>
                 <Route path={`${match.path}/:collectionId`} component={CollectionPageContainer}></Route>
             </Suspense>
@@ -27,7 +27,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+    fetchCollections: () => dispatch(fetchCollectionsStart())
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);

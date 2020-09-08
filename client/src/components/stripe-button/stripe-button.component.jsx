@@ -28,6 +28,8 @@ const StripeButton = ({ price }) => {
     })
 
   }
+
+
   return (
     <StripeCheckout
       label='Pay now'
@@ -41,8 +43,7 @@ const StripeButton = ({ price }) => {
       token={onToken}
       stripeKey={publicKey}
     />
-  );
-
+  )
 }
 
 export default StripeButton;
