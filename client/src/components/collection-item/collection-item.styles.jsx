@@ -10,11 +10,11 @@ const CollectionItemContainer = styled.div`
     width: 100%;
 
     .image {
-    width: 100%;
-    height: 95%;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 5px;
+      width: 100%;
+      height: 95%;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 5px;
     }
 
     .custom-button {
@@ -32,38 +32,38 @@ const CollectionItemContainer = styled.div`
         }
     }
     
-      &:hover {
+    &:hover {
+      .image {
+        opacity: 0.8;
+      }
+      .custom-button {
+        opacity: 0.85;
+        display: flex;
+      }
+      @media screen and (max-width: 575px){
         .image {
-          opacity: 0.8;
+          opacity: unset;
         }
         .custom-button {
-          opacity: 0.85;
-          display: flex;
-        }
-        @media screen and (max-width: 575px){
-          .image {
-            opacity: unset;
-          }
-          .custom-button {
-            opacity: unset;
-          }
+          opacity: unset;
         }
       }
-    
-      .collection-footer {
-        width: 100%;
-        height: 5%;
-        display: flex;
-        justify-content: space-between;
-        font-size: 18px;
-        padding: 0 5px;
-        .name {
-          margin-bottom: 15px;
-        }
-        .price {
-          width: 10%;
-        }
+    }
+  
+    .collection-footer {
+      width: 100%;
+      height: 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      padding: 0 5px;
+      .name {
+        margin-bottom: 15px;
       }
+      .price {
+        width: 10%;
+      }
+    }
 `;
 
 export default CollectionItemContainer

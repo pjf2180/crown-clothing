@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import GlobalStyle from './global-styles'
+import GlobalStyle from './global-styles';
+import { default as Header } from './components/header/header.container';
 
-import Header from './components/header/header.component'
 //Router
 import { Route, Switch, Redirect } from 'react-router-dom'
 //Redux
