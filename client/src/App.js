@@ -18,6 +18,7 @@ const HomePage = lazy(() => import('./pages/homepage/home-page.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout-page.component'));
 const SignInAndSignUpPage = lazy(() => import('./components/sign-in-sign-up/sign-in-sign-up.component'));
+const AdminPage = lazy(()=> import('./pages/adminpage/admin-page.component'));
 
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
@@ -40,6 +41,7 @@ const App = ({ currentUser, checkUserSession }) => {
                 :
                 (<SignInAndSignUpPage></SignInAndSignUpPage>)}>
             </Route>
+            <Route exact path="/admin" component={AdminPage}></Route>
           </Suspense>
         </ErrorBoundary>
 

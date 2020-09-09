@@ -1,0 +1,41 @@
+.collection-card__card{
+    border-radius: 5px;
+    background-color: rgb(209, 209, 209);
+    width: 100%;
+    height: 350px;
+}
+
+.collection-card__name-container{
+    text-align: center;
+    margin: 15px;
+}
+.collection-card__image{
+    width: 100%;
+    height: 30%;
+    border-radius: 5px 5px 0px 0px;
+    background-position-x: 50%;
+    background-position-y: 25%;
+}
+.collection-card__stats{
+    
+    margin-top: 15px;
+
+    .collection-card__stat-row{
+        display: flex;
+        justify-content: space-between;
+        border-top: solid 1px black;
+        padding: 20px;
+        &:last-child{
+
+            border-bottom: solid 1px black;
+        }
+    }
+
+  ul {
+    list-style: none;
+    
+  }
+  h5{
+      margin: 0;
+  }
+}
