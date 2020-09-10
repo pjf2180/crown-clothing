@@ -1,0 +1,39 @@
+.admin-collection__main{
+
+    .admin-collection__list{
+        margin-top: 15px
+    }
+
+    .admin-collection__list-item{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        margin-bottom: 15px;
+        
+
+        .admin-collection__product-img{
+            width: 100px;
+            height: 100px;
+            background-color: cadetblue;
+            flex:2;
+        }
+
+        .admin-collection__product-caption{
+            flex: 5;
+            display: flex;
+            flex-direction: column;
+            //background-color: chartreuse;
+            padding-left: 10px;
+
+            
+            &.green-lf-border{
+                border-right: 3px solid rgb(0, 190, 0);
+            }
+            &.red-lf-border{
+                border-right: 3px solid rgb(235, 0, 0);
+            }
+        }
+    }
+}
+
+
