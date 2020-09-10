@@ -88,11 +88,15 @@ export const getCurrentUser = () => {
     });
 }
 
-export async function getAdminCollection(collectionId) {
-    const collectionSnap = await firestore.collection('collections').doc(collectionId).get();
-    if (!collectionSnap.exists) { return undefined }
-    const docData = collectionSnap.data();
-    return { collectionId: collectionSnap.id, ...docData, };
+export async function getAdminCollection(collectionName) {
+    const collectionSnap = await firestore.collection('collections')
+        .where('title', '==', collectionName).get();
+    if (collectionSnap.docs.length===0) { return undefined }
+    const docDataSnap = collectionSnap.docs[0];
+    let docData = docDataSnap.data();
+    // patch meanwhile admin collection is unexistent
+    docData.items = docData.items.map(item => ({ ...item, inStock: true, online: true }))
+    return { collectionId: docDataSnap.id, ...docData, };
 }
 
 export const signOut = () => {

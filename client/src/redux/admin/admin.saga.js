@@ -7,7 +7,6 @@ function* fetchAdminCollectionWorker(action) {
     const { collectionId } = action.payload;
     try {
         const collection = yield getAdminCollection(collectionId);
-        console.log(collection);
         yield put(FetchAdminCollectionSuccess(collection))
     } catch (error) {
         yield put(fetchAdminCollectionFailure(error))

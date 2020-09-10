@@ -1,8 +1,10 @@
 .admin-product__details{
-    
+    display: flex;
+    flex-direction: column;
 }
 .admin-product__image{
     height: 45vh;
     width: 100%;
-    background-color: hotpink;
+    max-width: 500px;
+    align-self: center;
 }

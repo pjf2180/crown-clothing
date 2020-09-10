@@ -1,71 +1,35 @@
 import React from 'react';
 import './admin-collection.styles.scss';
+import WithSpinner from '../with-spinner/with-spinner.component';
 
-export const collectionItems = [
-    {
-        id: 1,
-        name: 'Brown Brim',
-        price: '45',
-        inStock: true,
-        online: true
-    },
-    {
-        id: 2,
-        name: 'Blue beanie',
-        price: '18',
-        inStock: true,
-        online: true
-    },
-    {
-        id: 3,
-        name: 'Brown Cowboy',
-        price: '35',
-        inStock: true,
-        online: false
-    }
-]
 
-export default function AdminCollection({ match, history }) {
+export function AdminCollection({ collectionItems, collectionTitle, onItemSelected }) {
 
-    const onItemSelected = (item) => {
-        console.log(item);
-        console.log(match);
-        console.log(history);
-        history.push(`${match.url}/${item.id}`)
-    }
-    const { collectionId } = match.params;
-    return (
-        <div className="admin-collection__main">
-            <h3>{collectionId}</h3>
-            <ul className="admin-collection__list">
-                {
-                    collectionItems.map((item) => {
-                        return <div key={item.id} className="admin-collection__list-item" onClick={() => onItemSelected({ ...item })}>
-                            <div className="admin-collection__product-img">
-
-                            </div>
-                            <div className={`admin-collection__product-caption 
-                            ${item.online ? 'green-lf-border' : 'red-lf-border'}`}>
-                                <h4>
-                                    {item.name}
-
-                                </h4>
-                                <h5>
-                                    ${item.price}
-
-                                </h5>
-                                <p>
-                                    {item.inStock ? 'In stock' : 'Out of stock'}
-
-                                </p>
-
-                            </div>
-
+    return <div className="admin-collection__main">
+        <h3>{collectionTitle}</h3>
+        <ul className="admin-collection__list">
+            {
+                collectionItems.map((item) => {
+                    return <div key={item.id}
+                        className="admin-collection__list-item"
+                        onClick={() => onItemSelected({ ...item })}>
+                        <div className="admin-collection__product-img"
+                            style={{ background: `url(${item.imageUrl}) center center/cover` }}>
                         </div>
-                    })
-                }
-
-            </ul>
-        </div>
-    )
+                        <div className={`admin-collection__product-caption 
+                            ${item.online ? 'green-lf-border' : 'red-lf-border'}`}>
+                            <h4>{item.name}</h4>
+                            <h5>${item.price}</h5>
+                            <p>{item.inStock ? 'In stock' : 'Out of stock'}</p>
+                        </div>
+                    </div>
+                })
+            }
+        </ul>
+    </div>
 }
+
+export default WithSpinner(AdminCollection);
+
+
+
