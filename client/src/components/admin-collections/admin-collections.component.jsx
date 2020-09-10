@@ -1,5 +1,5 @@
 import React from 'react'
-import './admin.styles.scss'
+import './admin-collections.styles.scss'
 import CollectionCard from '../collection-card/collection-card.component';
 
 const collections = [
@@ -40,10 +40,15 @@ const collections = [
     },
 ];
 
-export default function AdminCollection() {
+export default function AdminCollections({ history, match }) {
+    console.log(match)
+    const onCollectionSelected = (collectionName) => {
+        console.log(collectionName);
+        history.push(`${match.path}/${collectionName}`);
+    }
     return <div className="admin-collection__grid">
         {
-            collections.map((c, idx) => <CollectionCard key={idx} {...c} />)
+            collections.map((c, idx) => <CollectionCard key={idx} {...c} onDetailsClick={onCollectionSelected} />)
         }
     </div>
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './collection-card.styles.scss';
 import CustomButton from '../custom-button/custom-button.component';
 
-export default function CollectionCard({ name, realTimeUsers, totalVisits, visitDuration, imageUrl }) {
+export default function CollectionCard({ name, realTimeUsers, totalVisits, visitDuration, imageUrl, onDetailsClick }) {
     return (
         <div className="collection-card__card">
             <div className="collection-card__image"
@@ -43,7 +43,7 @@ export default function CollectionCard({ name, realTimeUsers, totalVisits, visit
                         </li>
                     </ul>
                 </div>
-                <CustomButton className="collection-card__details-btn" onClick={() => console.log('Button clicked')}>View details</CustomButton>
+                <CustomButton className="collection-card__details-btn" onClick={() => onDetailsClick(name)}>View details</CustomButton>
             </div>
 
         </div>

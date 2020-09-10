@@ -1,0 +1,22 @@
+.product-selector__list-container{
+    width: 300px;
+    padding-top: 15px;
+}
+.product-selector__list{
+
+    margin-top: 25px;;
+}
+
+.product-selector__item{
+    height: 80px;
+    display: flex;
+}
+.product-selector__item-selected{
+  background-color: rgb(221, 221, 221);
+}
+.product-selector__image-container{
+    flex: 1
+}
+.product-selector__info{
+    flex: 2;
+}

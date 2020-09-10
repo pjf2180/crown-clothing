@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 25px 0;
+    margin: 0 0;
     @media screen and (max-width: ${smWidth}){
         padding: 0px;
         margin: 0px;
