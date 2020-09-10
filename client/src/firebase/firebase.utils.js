@@ -88,6 +88,13 @@ export const getCurrentUser = () => {
     });
 }
 
+export async function getAdminCollection(collectionId) {
+    const collectionSnap = await firestore.collection('collections').doc(collectionId).get();
+    if (!collectionSnap.exists) { return undefined }
+    const docData = collectionSnap.data();
+    return { collectionId: collectionSnap.id, ...docData, };
+}
+
 export const signOut = () => {
     return auth.signOut();
 }
