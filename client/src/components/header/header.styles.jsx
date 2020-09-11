@@ -21,6 +21,7 @@ export const LogoContainer = styled(Link)`
     height: 100%;
     width: 70px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     @media screen and (max-width: ${smWidth}){

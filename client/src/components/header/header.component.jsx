@@ -4,12 +4,13 @@ import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './header.styles';
 
-const Header = ({ currentUser, hiddenCart, signOut }) => {
+const Header = ({ currentUser, hiddenCart, isAdmin, signOut }) => {
 
     return (
         <HeaderContainer>
             <LogoContainer className="logo-container" to="/">
                 <Logo className="logo"></Logo>
+                {isAdmin ? <h5>ADMIN</h5> : null}
             </LogoContainer>
             <OptionsContainer>
                 <OptionLink className="option" to="/shop">Shop</OptionLink>
@@ -28,5 +29,6 @@ const Header = ({ currentUser, hiddenCart, signOut }) => {
         </HeaderContainer>
     )
 }
+
 
 export default Header;
