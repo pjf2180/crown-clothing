@@ -1,26 +1,26 @@
-
-import { AdminTypes } from './admin.types'
+import { AdminTypes } from '../admin/admin.types';
 
 const INITIAL_STATE = {
-    collection: null,
+    success: false,
     loading: false,
     error: false
 }
 
-export const collectionReducer = (state = INITIAL_STATE, action) => {
+export const productDetailReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case AdminTypes.FETCH_ADMIN_COLLECTION:
+        case AdminTypes.EDIT_ADMIN_PRODUCT:
             return {
                 ...state,
                 loading: true
             }
-        case AdminTypes.FETCH_ADMIN_COLLECTION_SUCCESS:
+        case AdminTypes.EDIT_ADMIN_PRODUCT_SUCCESS:
             return {
                 ...state,
+                success: true,
                 loading: false,
-                collection: action.payload.collection
+                error: null
             }
-        case AdminTypes.FETCH_ADMIN_COLLECTION_FAILURE:
+        case AdminTypes.EDIT_ADMIN_PRODUCT_FAILURE:
             return {
                 ...state,
                 loading: false,
@@ -30,4 +30,3 @@ export const collectionReducer = (state = INITIAL_STATE, action) => {
             return state;
     }
 }
-

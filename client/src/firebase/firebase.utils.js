@@ -88,10 +88,91 @@ export const getCurrentUser = () => {
     });
 }
 
+export async function editProduct(product, collectionName) {
+    console.log('edit product ', product);
+    const batch = firestore.batch();
+    const querySnap = await firestore.collection('collections')
+        .where('title', '==', collectionName)
+        .get();
+
+
+    const productCollectionRef = querySnap.docs[0].ref;
+
+    // get all existing items of collection
+
+    const productCollectionDocSnap = await productCollectionRef.get();
+    const { items } = productCollectionDocSnap.data();
+
+    const newItemsList = items.map(item => {
+        if (item.id === product.id) {
+            return {
+                id: product.id,
+                imageUrl: product.imageUrl,
+                name: product.name,
+                price: parseInt(product.price)
+            }
+        }
+        return item;
+    });
+
+    //adding public product to batch
+    batch.set(productCollectionRef,
+        {
+            title: collectionName,
+            items: newItemsList
+        });
+
+    //add admin product to batch
+    const adminProductCollectionRef = productCollectionRef.collection('admin')
+        .doc('collectionItems');
+
+    // read current admin items list
+    const adminProductCollectionSnap = await adminProductCollectionRef.get();
+    const currentAdminItems =  adminProductCollectionSnap.data().items;
+    const newAdminItems = currentAdminItems.map(item => {
+        if (item.id === product.id) { return product }
+        return item
+    });
+
+    batch.set(adminProductCollectionRef, {
+        title: collectionName,
+        items: newAdminItems
+    })
+
+    await batch.commit()
+        .then(() => console.log('Product updated succesfully'))
+        .catch(reason => console.log(reason));
+
+}
+
+export const syncAdminCollection = async () => {
+    const adminProduct_props = {
+        online: true,
+        inStock: true
+    }
+    const collectionSnap = await firestore.collection('collections').get()
+    console.log(collectionSnap);
+    const writeProms = collectionSnap.docs.map(collectionDoc => {
+
+        const collectionData = collectionDoc.data();
+        let adminCollectionData = { ...collectionData };
+        // adding admin properties to collection copy
+        adminCollectionData.items = adminCollectionData.items
+            .map(item => ({ ...adminProduct_props, ...item }));
+        console.log(adminCollectionData);
+
+        const collectionDocRef = collectionDoc.ref;
+        return collectionDocRef.collection('admin')
+            .doc('collectionItems').set(adminCollectionData);
+    });
+
+    await Promise.all(writeProms);
+}
+
 export async function getAdminCollection(collectionName) {
     const collectionSnap = await firestore.collection('collections')
         .where('title', '==', collectionName).get();
-    if (collectionSnap.docs.length===0) { return undefined }
+    if (collectionSnap.docs.length === 0) { return undefined }
     const docDataSnap = collectionSnap.docs[0];
     let docData = docDataSnap.data();
     // patch meanwhile admin collection is unexistent
@@ -113,3 +194,63 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWIthGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
+
+export const JACKETS = {
+    title: 'Hats',
+    items: [
+        {
+            id: 1,
+            name: 'Brown Brim',
+            imageUrl: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
+            price: 25
+        },
+        {
+            id: 2,
+            name: 'Blue Beanie',
+            imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
+            price: 18
+        },
+        {
+            id: 3,
+            name: 'Brown Cowboy',
+            imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
+            price: 35
+        },
+        {
+            id: 4,
+            name: 'Grey Brim',
+            imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
+            price: 25
+        },
+        {
+            id: 5,
+            name: 'Green Beanie',
+            imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
+            price: 18
+        },
+        {
+            id: 6,
+            name: 'Palm Tree Cap',
+            imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
+            price: 14
+        },
+        {
+            id: 7,
+            name: 'Red Beanie',
+            imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
+            price: 18
+        },
+        {
+            id: 8,
+            name: 'Wolf Cap',
+            imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
+            price: 14
+        },
+        {
+            id: 9,
+            name: 'Blue Snapback',
+            imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
+            price: 16
+        }
+    ]
+}
