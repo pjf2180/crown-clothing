@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense, Fragment } from 'react';
 import GlobalStyle from './global-styles';
 import { default as Header } from './components/header/header.container';
 
@@ -14,11 +14,9 @@ import LoadingSpinner from './components/loading-spinner/loading-spinner'
 import ErrorBoundary from './components/error-boundary/error-boundary.component'
 
 //lazy loaded Components
-const HomePage = lazy(() => import('./pages/homepage/home-page.component'));
-const ShopPage = lazy(() => import('./pages/shop/shop.component'));
-const CheckoutPage = lazy(() => import('./pages/checkout/checkout-page.component'));
 const SignInAndSignUpPage = lazy(() => import('./components/sign-in-sign-up/sign-in-sign-up.component'));
 const AdminPage = lazy(() => import('./pages/adminpage/admin-page.component'));
+const UserPage = lazy(()=> import('./pages/userpage/user-page.component'));
 
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
@@ -26,30 +24,30 @@ const App = ({ currentUser, checkUserSession }) => {
   }, [checkUserSession]);
 
   return (
-    <div>
+    <Fragment>
       <GlobalStyle />
       <Header />
       <div className="app__router-container">
         <Switch>
           <ErrorBoundary>
             <Suspense fallback={<LoadingSpinner />}>
-              <Route exact path="/" component={HomePage} ></Route>
-              <Route path="/shop" component={ShopPage}></Route>
-              <Route exact path="/checkout" component={CheckoutPage}></Route>
+
+              <Route path="/" component={UserPage}/>
+              <Route path="/admin" component={AdminPage} />
+
               <Route exact path="/signIn"
                 render={() => currentUser ?
                   (<Redirect to='/'></Redirect>)
                   :
-                  (<SignInAndSignUpPage></SignInAndSignUpPage>)}>
-              </Route>
-              <Route path="/admin" component={AdminPage}></Route>
+                  (<SignInAndSignUpPage></SignInAndSignUpPage>)} />
+
             </Suspense>
           </ErrorBoundary>
 
         </Switch>
       </div>
 
-    </div >
+    </Fragment >
   );
 }
 const mapStateToProps = createStructuredSelector({

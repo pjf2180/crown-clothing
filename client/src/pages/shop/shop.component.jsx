@@ -10,7 +10,7 @@ const CollectionOverviewContainer = lazy(() => import('../../components/collecti
 const CollectionPageContainer = lazy(() => import('../collection/collection.container'));
 
 export const ShopPage = ({ fetchCollections, match }) => {
-
+    console.log(match);
     useEffect(() => {
         fetchCollections();
     }, [fetchCollections]);
