@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 const HomePage = lazy(() => import('../homepage/home-page.component'));
 const ShopPage = lazy(() => import('../shop/shop.component'));
 const CheckoutPage = lazy(() => import('../checkout/checkout-page.component'));
+const OrdersPage = lazy(() => import('../orderspage/orders-page.component'));
 
 export default function UserPage({ match }) {
     const { path } = match;
@@ -12,6 +13,7 @@ export default function UserPage({ match }) {
             <Switch>
                 <Route exact path={`${path}`} component={HomePage} ></Route>
                 <Route path={`${path}shop`} component={ShopPage}></Route>
+                <Route path={`${path}orders`} component={OrdersPage}></Route>
                 <Route path={`${path}checkout`} component={CheckoutPage}></Route>
             </Switch>
         </div>
