@@ -44,32 +44,3 @@
         margin-right: 15px;
     }
 }
-
-
-
-// Order product
-
-.order-product__main{
-    height: fit-content;
-    width: 100%;
-    display: flex;
-
-    .order-product__product-img{
-        height: 100px;
-        width: 100px;
-    }
-    .order-product__product-info{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
-        padding: 10px;
-        position: relative;
-    }
-    .order-product__total{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
-}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './order-product.styles.scss';
 
 export default function OrderProduct({ name, quantity, price, imageUrl }) {
     return (
