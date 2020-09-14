@@ -1,43 +1,25 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './orders-page.styles.scss';
 import OrderProductHeader from '../../components/order-product-header/order-product-header.component';
 import OrderProduct from '../../components/order-product/order-product.component';
+import CustomButton from '../../components/custom-button/custom-button.component';
 
-function OrdersPage() {
+function OrdersPage({ lastOrder }) {
 
-    const orderProducts = [
-        {
-            name: 'Adidas NMD',
-            quantity: 2,
-            price: 220,
-            imageUrl: 'https://i.ibb.co/0s3pdnc/adidas-nmd.png'
-        },
-        {
-            name: 'Adidas Yeezy',
-            quantity: 1,
-            price: 280,
-            imageUrl: 'https://i.ibb.co/dJbG1cT/yeezy.png'
-        },
-    ];
-    const order = {
-        products: orderProducts,
-        total: 54.99,
-        timestamp: 123435
-    }
     return (
-        <div>
+        <div className="orders-page__main">
             <h1>Your orders</h1>
             <div className="order__main">
-                <OrderProductHeader timestamp={order.timestamp} total={order.total} />
+                <OrderProductHeader timestamp={lastOrder.createdAt.seconds} total={lastOrder.total} />
                 <div className="order__section order__content">
                     {
-                        order.products.map((product,idx) => (
+                        lastOrder.items.map((product,idx) => (
                             <OrderProduct key={idx} {...product} />
                         ))
                     }
                 </div>
             </div>
-
+            <CustomButton>View more</CustomButton>        
         </div>
     )
 }

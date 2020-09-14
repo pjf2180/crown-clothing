@@ -1,3 +1,9 @@
+.orders-page__main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .order__main{
     margin-top: 15px;
     width: 100%;

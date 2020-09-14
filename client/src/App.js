@@ -16,13 +16,13 @@ import ErrorBoundary from './components/error-boundary/error-boundary.component'
 //lazy loaded Components
 const SignInAndSignUpPage = lazy(() => import('./components/sign-in-sign-up/sign-in-sign-up.component'));
 const AdminPage = lazy(() => import('./pages/adminpage/admin-page.component'));
-const UserPage = lazy(()=> import('./pages/userpage/user-page.component'));
+const UserPage = lazy(() => import('./pages/userpage/user-page.component'));
 
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
-
+  console.log(currentUser);
   return (
     <Fragment>
       <GlobalStyle />
@@ -32,7 +32,7 @@ const App = ({ currentUser, checkUserSession }) => {
           <ErrorBoundary>
             <Suspense fallback={<LoadingSpinner />}>
 
-              <Route path="/" component={UserPage}/>
+              <Route path="/" component={UserPage} />
               <Route path="/admin" component={AdminPage} />
 
               <Route exact path="/signIn"
