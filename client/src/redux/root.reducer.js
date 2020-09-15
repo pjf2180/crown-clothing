@@ -8,7 +8,7 @@ import { shopReducer } from './shop/shop.reducer'
 import { productDetailReducer } from './product-detail/product-detail.reducer'
 import { collectionReducer } from './admin/admin.reducer'
 import { ordersReducer } from './orders/orders.reducer'
-
+import { collectionInsightsReducer } from './collection-insights/collection-insights.reducer'
 const persistConfig = {
     key: 'root',
     storage,
@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
     shop: shopReducer,
     admin: collectionReducer,
     adminProductDetail: productDetailReducer,
-    orders: ordersReducer
+    orders: ordersReducer,
+    collectionInsights: collectionInsightsReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
