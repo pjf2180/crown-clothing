@@ -3,11 +3,14 @@ import 'react-stripe-checkout';
 import './stripe-button.scss';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from '../../redux/user/user.selector';
 
-const StripeButton = ({ price }) => {
+const StripeButton = ({ price, items, currentUser }) => {
   const priceForStripe = price * 100;
   const publicKey = 'pk_test_HWgXCcBi72pfuf0EExzjXmn000tWtSFIAP';
-
+  console.log(items);
   const onToken = token => {
     console.log(token);
     axios({
@@ -15,7 +18,9 @@ const StripeButton = ({ price }) => {
       method: 'post',
       data: {
         token,
-        amount: priceForStripe
+        amount: priceForStripe,
+        itemsAsIds: items,
+        userId: currentUser?.id
       }
     }).then(response => {
       console.log(response);
@@ -45,5 +50,7 @@ const StripeButton = ({ price }) => {
     />
   )
 }
-
-export default StripeButton;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+})
+export default connect(mapStateToProps)(StripeButton);
