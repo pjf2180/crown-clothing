@@ -89,12 +89,10 @@ export const getCurrentUser = () => {
 }
 
 export async function editProduct(product, collectionName) {
-    console.log('edit product ', product);
     const batch = firestore.batch();
     const querySnap = await firestore.collection('collections')
         .where('title', '==', collectionName)
         .get();
-
 
     const productCollectionRef = querySnap.docs[0].ref;
 
@@ -205,6 +203,17 @@ export async function getNextOrders(userId, limit, startAfterId) {
     return orders;
 }
 
+export async function addAdminCollections() {
+    const collections = getTestCollections();
+    const collectionRef = firestore.collection('collectionsInsights');
+    const batch = firestore.batch();
+    collections.forEach(c => {
+        const collectionInsightDocRef = collectionRef.doc();
+        batch.set(collectionInsightDocRef, c);
+    });
+    await batch.commit();
+}
+
 export const signOut = () => {
     return auth.signOut();
 }
@@ -220,6 +229,8 @@ export const signInWIthGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
 
+
+// test data
 export const JACKETS = {
     title: 'Hats',
     items: [
@@ -278,4 +289,52 @@ export const JACKETS = {
             price: 16
         }
     ]
+}
+
+
+
+const collections = [
+    {
+        collectionId: 'RliVpImYIFci6M60A6Ma',
+        name: 'Hats',
+        realTimeUsers: 467,
+        totalVisits: 12678,
+        visitDuration: 90,
+        imageUrl: 'https://i.ibb.co/cvpntL1/hats.png'
+    },
+    {
+        collectionId: '3dxdGRgjhu0d9KHOsRdQ',
+        name: 'Jackets',
+        realTimeUsers: 467,
+        totalVisits: 12678,
+        visitDuration: 90,
+        imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png'
+    },
+    {
+        collectionId: 'EHwuWBQ8muhjVljW3TFB',
+        name: 'Sneakers',
+        realTimeUsers: 467,
+        totalVisits: 12678,
+        visitDuration: 90,
+        imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png'
+    },
+    {
+        collectionId: 'vOfIGAZy5mUpeL86wva3',
+        name: 'Womens',
+        realTimeUsers: 467,
+        totalVisits: 12678,
+        visitDuration: 90,
+        imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png'
+    },
+    {
+        collectionId: 'GUHAj7E4pNHdNaecapmR',
+        name: 'Mens',
+        realTimeUsers: 467,
+        totalVisits: 12678,
+        visitDuration: 90,
+        imageUrl: 'https://i.ibb.co/R70vBrQ/men.png'
+    },
+];
+function getTestCollections(){
+    return collections;
 }

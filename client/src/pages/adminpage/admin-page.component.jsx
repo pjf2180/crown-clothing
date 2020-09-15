@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react'
-import AdminCollections from '../../components/admin-collections/admin-collections.component';
+import React, { Fragment } from 'react'
+import AdminCollections from '../../components/admin-collections/admin-collections.container';
 import AdminCollection from '../../components/admin-collection/admin-collection.container';
 import AdminProductDetail from '../../components/admin-product-detail/AdminProductDetail.component';
 import AdminSignIn from '../../components/admin-sign-in/admin-sign-in.component';
