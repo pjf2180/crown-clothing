@@ -37,7 +37,7 @@ const CheckoutPage = ({ cartItems, cartTotal }) => (
       *Please use the following credit card for testing purposes* <br />
       4242 4242 4242 4242 - Exp: 01/20 - cvv:123
     </div>
-    <StripeButton className='stripe-btn' price={cartTotal} />
+    <StripeButton className='stripe-btn' price={cartTotal} items={cartItems}/>
   </CheckoutPageContainer>
   // <div className="checkout-page">
 
