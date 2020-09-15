@@ -4,6 +4,7 @@ import { userSagas } from './user/user.saga';
 import { cartSagas } from './cart/cart.saga';
 import { adminSagas } from './admin/admin.saga';
 import { productDetailSagas } from './product-detail/product-detail.saga'
+import { orderSagas } from './orders/orders.sagas';
 
 export default function* rootSaga() {
     yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
         call(fetchCollectionsStart),
         call(cartSagas),
         call(adminSagas),
-        call(productDetailSagas)
+        call(productDetailSagas),
+        call(orderSagas)
     ]);
 }
