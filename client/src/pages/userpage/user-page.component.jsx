@@ -9,7 +9,7 @@ const ShopPage = lazy(() => import('../shop/shop.component'));
 const CheckoutPage = lazy(() => import('../checkout/checkout-page.component'));
 const OrdersPage = lazy(() => import('../orderspage/orders-page.container'));
 
-function UserPage({ match, currentUser }) {
+function UserPage({ match }) {
     const { path } = match;
     return (
         <div>

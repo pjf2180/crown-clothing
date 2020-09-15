@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './orders-page.styles.scss';
 
 import CustomButton from '../../components/custom-button/custom-button.component';
@@ -10,6 +10,7 @@ function OrdersPage({ orders, loadNextOrders, currentUser, loadingOrders }) {
         const lastOrder = orders[orders.length - 1];
         loadNextOrders(currentUser.id, lastOrder.orderId, 1);
     }
+    if(currentUser===null){ return <h2>Sign in to view your orders.</h2>}
     return (
         <div className="orders-page__main">
             <h1>Your orders</h1>

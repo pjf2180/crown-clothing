@@ -44,7 +44,7 @@ function* signInWithEmailAsync({ payload }) {
 function* isUserAuthenticated() {
     try {
         const currentUser = yield getCurrentUser();
-        if (!currentUser) return
+        if (!currentUser) throw new Error('User session not found');
         yield getSnapshotFromUserAuth(currentUser);
     } catch (error) {
         yield put(signInFailure(error));
