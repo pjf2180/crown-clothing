@@ -4,10 +4,10 @@ import { getNextOrders } from '../../firebase/firebase.utils';
 import { FetchNextOrdersFailure, FetchNextOrdersSuccess } from "./orders.actions";
 //  WORKERS
 function* fetchNextOrdersWorker(action) {
-    const { userId, cursorIdx, limit } = action.payload;
+    const { userId, startAfter, limit } = action.payload;
 
     try {
-        const nextOrders = yield getNextOrders(userId, limit, cursorIdx);
+        const nextOrders = yield getNextOrders(userId, limit, startAfter);
         yield put(FetchNextOrdersSuccess(nextOrders));
     } catch (error) {
         put(FetchNextOrdersFailure(error));

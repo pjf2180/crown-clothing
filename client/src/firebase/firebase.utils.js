@@ -180,18 +180,22 @@ export async function getAdminCollection(collectionName) {
     return { collectionId: docDataSnap.id, ...docData, };
 }
 /**
- * @param  {} userId
+ * @param  {} userId - User UID related to the orders
  * @param  {} limit - Especifies how many orders of the next orders to fetch
- * @param  {} cursorIndex - Starting point to get the orders
+ * @param  {} startAfterId - UID used as starting point to get the orders
  * @returns {} orders - An array of the next orders found
  */
-export async function getNextOrders(userId, limit, lastResult) {
+export async function getNextOrders(userId, limit, startAfterId) {
     // build query
-    let query = firestore.collection('orders')
+    const ordersCollectionRef = firestore.collection('orders');
+    let query = ordersCollectionRef
         .where('userId', '==', userId)
         .limit(limit);
-        
-    if (lastResult) { query = query.startAfter(lastResult) }
+
+    if (startAfterId) {
+        const startAfterDocRef = await ordersCollectionRef.doc(startAfterId).get();
+        query = query.startAfter(startAfterDocRef);
+    }
 
     const querySnapshot = await query.get();
 

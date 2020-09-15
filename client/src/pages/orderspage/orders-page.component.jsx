@@ -6,9 +6,9 @@ import Order from '../../components/order/order.component'
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner'
 
 function OrdersPage({ orders, loadNextOrders, currentUser, loadingOrders }) {
-    console.log(loadingOrders);
     const onViewMore = () => {
-        loadNextOrders(currentUser.id, orders[orders.length - 1], 1);
+        const lastOrder = orders[orders.length - 1];
+        loadNextOrders(currentUser.id, lastOrder.orderId, 1);
     }
     return (
         <div className="orders-page__main">
