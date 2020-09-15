@@ -1,0 +1,38 @@
+.order__main{
+    width: 100%;
+    height: fit-content;
+
+    & > * {
+        border: 1px solid gray;
+    }
+
+    .order__section{
+        padding: 15px;
+        &:first-child{
+            background-color: rgb(245, 245, 245);
+            border-radius: 5px 5px 0px 0px;
+            border-bottom:none;
+        }
+        &:last-child{
+            border-radius: 0px 0px 5px 5px 
+        }
+    }
+
+    .order__header{
+        width: 100%;
+        height: 80px;
+        display: flex;
+    }
+    
+    .order__content{
+        width: 100%;
+        height: fit-content;
+        & > *{
+            margin-bottom: 10px;
+        }
+    }
+
+    .order__date-container{
+        margin-right: 15px;
+    }
+}

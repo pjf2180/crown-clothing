@@ -11,7 +11,6 @@ const OrdersPage = lazy(() => import('../orderspage/orders-page.container'));
 
 function UserPage({ match, currentUser }) {
     const { path } = match;
-    console.log(currentUser);
     return (
         <div>
             <Switch>

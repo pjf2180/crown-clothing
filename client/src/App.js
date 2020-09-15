@@ -22,7 +22,6 @@ const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
-  console.log(currentUser);
   return (
     <Fragment>
       <GlobalStyle />
