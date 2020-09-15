@@ -128,7 +128,7 @@ export async function editProduct(product, collectionName) {
 
     // read current admin items list
     const adminProductCollectionSnap = await adminProductCollectionRef.get();
-    const currentAdminItems =  adminProductCollectionSnap.data().items;
+    const currentAdminItems = adminProductCollectionSnap.data().items;
     const newAdminItems = currentAdminItems.map(item => {
         if (item.id === product.id) { return product }
         return item
@@ -178,6 +178,27 @@ export async function getAdminCollection(collectionName) {
     // patch meanwhile admin collection is unexistent
     docData.items = docData.items.map(item => ({ ...item, inStock: true, online: true }))
     return { collectionId: docDataSnap.id, ...docData, };
+}
+/**
+ * @param  {} userId
+ * @param  {} limit - Especifies how many orders of the next orders to fetch
+ * @param  {} cursorIndex - Starting point to get the orders
+ * @returns {} orders - An array of the next orders found
+ */
+export async function getNextOrders(userId, limit, lastResult) {
+    // build query
+    let query = firestore.collection('orders')
+        .where('userId', '==', userId)
+        .limit(limit);
+        
+    if (lastResult) { query = query.startAfter(lastResult) }
+
+    const querySnapshot = await query.get();
+
+    const orders = querySnapshot.docs
+        .map(docSnap => ({ orderId: docSnap.id, ...docSnap.data() }));
+
+    return orders;
 }
 
 export const signOut = () => {
