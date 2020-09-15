@@ -16,9 +16,7 @@ function UserPage({ match, currentUser }) {
             <Switch>
                 <Route exact path={`${path}`} component={HomePage} ></Route>
                 <Route path={`${path}shop`} component={ShopPage}></Route>
-                <Route path={`${path}orders`} render={() =>
-                    currentUser ? (<OrdersPage />) : (<Redirect to={`${path}`} />)
-                }></Route>
+                <Route path={`${path}orders`} component={OrdersPage}></Route>
                 <Route path={`${path}checkout`} component={CheckoutPage}></Route>
             </Switch>
         </div>
