@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const SpinnerOverlay = styled.div`
-  height: 60vh;
-  width: 100%;
+  ${getSpinnerOverlayStyles}
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,8 +9,7 @@ export const SpinnerOverlay = styled.div`
 
 export const SpinnerContainer = styled.div`
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  ${getSpinnerStyles}
   border: 3px solid rgba(195, 195, 195, 0.6);
   border-radius: 50%;
   border-top-color: #636767;
@@ -28,3 +26,13 @@ export const SpinnerContainer = styled.div`
     }
   }
 `;
+
+const fitContentStyles = 'height: 30px; width: 30px; '
+
+function getSpinnerOverlayStyles(props) {
+  return props.fitOnContainer ? fitContentStyles : `height: 60vh; width: 100%;`;
+}
+function getSpinnerStyles(props) {
+  const val = props.fitOnContainer ? fitContentStyles : `height: 50px; width: 50px;`;
+  return val;
+}
