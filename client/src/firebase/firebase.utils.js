@@ -203,6 +203,14 @@ export async function getNextOrders(userId, limit, startAfterId) {
     return orders;
 }
 
+export async function getCollectionInsights() {
+    const collectionInsightsSnap = await firestore.collection('collectionsInsights').get();
+    const results  = collectionInsightsSnap.docs.map(snap => {
+        return snap.data()
+    });
+    return results;
+}
+
 export async function addAdminCollections() {
     const collections = getTestCollections();
     const collectionRef = firestore.collection('collectionsInsights');
@@ -293,7 +301,7 @@ export const JACKETS = {
 
 
 
-const collections = [
+export const collections = [
     {
         collectionId: 'RliVpImYIFci6M60A6Ma',
         name: 'Hats',
@@ -335,6 +343,6 @@ const collections = [
         imageUrl: 'https://i.ibb.co/R70vBrQ/men.png'
     },
 ];
-function getTestCollections(){
+function getTestCollections() {
     return collections;
 }

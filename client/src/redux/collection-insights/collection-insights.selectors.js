@@ -6,3 +6,7 @@ export const selectCollectioInsights = createSelector(
     selectCollectioInsightsState,
     collectionInsightsState => collectionInsightsState.items
 );
+export const selectCollectioInsightsLoading = createSelector(
+    selectCollectioInsightsState,
+    collectionInsightsState => collectionInsightsState.loading
+);

@@ -1,18 +1,26 @@
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect'
-import WithSpinner from '../with-spinner/with-spinner.component'
 import AdminCollections from './admin-collections.component';
+import { selectCollectioInsightsLoading, selectCollectioInsights } from '../../redux/collection-insights/collection-insights.selectors'
+import { FetchCollectionInsights } from '../../redux/collection-insights/collection-insights.actions'
 
+export function AdminCollectionContainer({ isLoading, collections, startInsightsFetching }) {
 
-const mapStateToProps = state => ({
-    isLoading: true,
-    collections: []
-})
+    useEffect(() => {
+        startInsightsFetching();
+    }, []);
 
-const AdminCollectionContainer = compose(
-    connect(mapStateToProps),
-    WithSpinner
-)(AdminCollections);
+    return <AdminCollections isLoading={isLoading} collections={collections} />
+}
 
-export default AdminCollectionContainer;
+const mapStateToProps = createStructuredSelector({
+    isLoading: selectCollectioInsightsLoading,
+    collections: selectCollectioInsights
+});
+const mapDispatchToProps = dispatch => ({
+    startInsightsFetching: () => dispatch(FetchCollectionInsights())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminCollectionContainer);
+

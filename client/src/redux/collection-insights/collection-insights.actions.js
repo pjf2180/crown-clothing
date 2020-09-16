@@ -1,3 +1,4 @@
+import { CollectionInsightsTypes } from './collection-insights.types';
 export const FetchCollectionInsights = () => ({
     type: CollectionInsightsTypes.FETCH_COLLECTION_INSIGHTS
 });
