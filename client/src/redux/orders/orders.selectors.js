@@ -1,15 +1,11 @@
 import { createSelector } from 'reselect'
-import { selectCurrentUser } from '../user/user.selector'
 
 const selectOrdersState = state => state.orders;
 
 export const selectFetchedOrders = createSelector(
     selectOrdersState,
-    selectCurrentUser,
-    (ordersState, currentUser) => {
-        if (!currentUser) { return [] }
-        const { latestOrder } = currentUser;
-        return [latestOrder, ...ordersState.fetchedOrders]
+    (ordersState) => {
+        return [...ordersState.fetchedOrders]
     }
 )
 

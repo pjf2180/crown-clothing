@@ -12,7 +12,7 @@ export const selectCurrentUser = createSelector(
 );
 export const selectIsAdminUser = createSelector(
     selectCurrentUser,
-    currentUser => currentUser?.roles['admin']
+    currentUser => currentUser?.roles?.admin || false
 );
 export const selectUserLastOrder = createSelector(
     selectCurrentUser,
